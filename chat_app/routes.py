@@ -24,4 +24,4 @@ def respose(message):
     data = chatbot_response(translated)
     print(data)
     resposeData = translator.translate(data, dest='ml').text
-    return jsonify({"message": data+" "+resposeData})
+    return jsonify({"message": ""+resposeData})
