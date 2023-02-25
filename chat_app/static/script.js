@@ -5,7 +5,7 @@ let sendBtn = document.querySelector("#msgSubmit");
 let submitForm = document.querySelector("form");
 submitForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (e.srcElement[0].value == "clear") {
+  if (e.srcElement[0].value == "clear" || e.srcElement[0].value == "clear.") {
     clearMessages();
     e.srcElement[0].value = "";
     e.srcElement[0].focus();
