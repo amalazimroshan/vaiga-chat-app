@@ -5,9 +5,21 @@ let sendBtn = document.querySelector("#msgSubmit");
 let submitForm = document.querySelector("form");
 submitForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  if (e.srcElement[0].value == "clear") {
+    clearMessages();
+    e.srcElement[0].value = "";
+    e.srcElement[0].focus();
+    return;
+  }
   prepareMsg();
 });
-
+function clearMessages() {
+  let messages = message_container.querySelectorAll(".message_holder");
+  console.log(messages);
+  messages.forEach((elem) => {
+    message_container.removeChild(elem);
+  });
+}
 function prepareMsg() {
   let messageContent = document.querySelector("#msgText");
   messages.set(Math.floor(Math.random() * 100), {
@@ -27,7 +39,11 @@ async function sendMsg(message) {
   //   `https://dummyjson.com/products/${message.message}`
   // );
   let response = await fetch(`http://127.0.0.1:5000/${message.message}`);
-  let data = await response.json();
+  let data = response.ok
+    ? await response.json()
+    : { message: "there is some issue on our end" };
+  // let data = await response.json();
+
   renderMsg({ user: "machine", message: data.message });
 }
 function renderMsg(message) {
