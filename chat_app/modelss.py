@@ -10,11 +10,7 @@ import joblib
 
 
 def chatbot_response(user_input):
-<<<<<<< HEAD
     data = pd.read_csv('chat_app/dataset.csv')
-=======
-    data = pd.read_csv('chat_app\jrice.csv')
->>>>>>> 5b650297a2af0ac8d8c03f98c32d07d8048bdc2c
     vectorizer = TfidfVectorizer()
     X = vectorizer.fit_transform(data['question'].values.astype('U'))
     # Train the model and assign to a variable
