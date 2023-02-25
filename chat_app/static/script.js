@@ -35,7 +35,8 @@ function renderMsg(message) {
   message_holder.classList.add("message_holder");
 
   let alinger = document.createElement("div");
-  alinger.classList.add("aligner");
+  alinger.classList.add("alinger");
+  if (message.user == "machine") alinger.classList.add("robot-aligner");
 
   let avatar = document.createElement("div");
   avatar.classList.add("avatar");
@@ -48,7 +49,9 @@ function renderMsg(message) {
   bubble.textContent = message.message;
 
   alinger.appendChild(avatar);
-  if (message.user == "person") avatar.insertBefore(alinger, bubble);
+  alinger.appendChild(bubble);
+
+  message_holder.appendChild(alinger);
   message_container.insertBefore(message_holder, anchor);
 }
 
