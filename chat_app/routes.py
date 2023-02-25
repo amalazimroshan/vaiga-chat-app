@@ -13,3 +13,8 @@ def chat(message):
     translated = translator.translate(message,dest='en').text 
     return jsonify({"message":""+translated})
 
+
+def get_api_response():
+    response = requests.get('')
+    data = response.json()
+    return jsonify(data)
