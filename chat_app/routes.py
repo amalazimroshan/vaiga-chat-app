@@ -1,4 +1,4 @@
-import requests
+# import requests
 from chat_app import app
 from flask import render_template, jsonify
 from googletrans import Translator
@@ -20,12 +20,12 @@ def chat(message):
 @app.route('/<string:message>')
 def respose(message):
 
-    #translating user query to english
+    # translating user query to english
     translator = Translator()
     translated = translator.translate(message, dest='en').text
     print(translated)
 
-    #checking user query for specific words
+    # checking user query for specific words
     # match = False
     # spliced = translated.lower().split()
     # key_words = ["tool","fertilizer","device"]
@@ -36,24 +36,24 @@ def respose(message):
 
     match = match_keywords(translated)
 
-    if match :
-        return jsonify({"message":"you can buy tools from ......"})
-    #else produce result and translate back to english
-    else :
+    if match:
+        return jsonify({"message": "you can buy tools from ......"})
+    # else produce result and translate back to english
+    else:
         data = chatbot_response(translated)
         print(data)
         resposeData = translator.translate(data, dest='ml').text
         return jsonify({"message": " "+resposeData})
 
 
-#if match found return 
+# if match found return
 def match_keywords(query):
     match = False
     spliced = query.lower().split()
-    key_words = ["tool","tools","fertilizer","device"]
+    key_words = ["tool", "tools", "fertilizer", "device"]
     for word in spliced:
         for key in key_words:
-            if word == key :
+            if word == key:
                 match = True
-    
+
     return match
