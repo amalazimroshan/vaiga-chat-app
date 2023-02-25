@@ -34,12 +34,21 @@ function renderMsg(message) {
   let message_holder = document.createElement("div");
   message_holder.classList.add("message_holder");
 
+  let alinger = document.createElement("div");
+  alinger.classList.add("aligner");
+
+  let avatar = document.createElement("div");
+  avatar.classList.add("avatar");
+  if (message.user == "person") avatar.classList.add("iconUser");
+  console.log(avatar);
+
   let bubble = document.createElement("div");
   bubble.classList.add("bubble");
   if (message.user == "person") bubble.classList.add("user");
   bubble.textContent = message.message;
 
-  message_holder.appendChild(bubble);
+  alinger.appendChild(avatar);
+  if (message.user == "person") avatar.insertBefore(alinger, bubble);
   message_container.insertBefore(message_holder, anchor);
 }
 
