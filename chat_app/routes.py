@@ -17,11 +17,11 @@ def chat(message):
     return jsonify({"message": "hello "+translated})
 
 
-@app.route('/res/<string:message>')
+@app.route('/<string:message>')
 def respose(message):
     translator = Translator()
     translated = translator.translate(message, dest='en').text
     data = chatbot_response(translated)
     print(data)
     resposeData = translator.translate(data, dest='ml').text
-    return jsonify({"message": ""+resposeData})
+    return jsonify({"message": " "+resposeData})
