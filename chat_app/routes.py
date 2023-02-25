@@ -2,6 +2,7 @@ import requests
 from chat_app import app
 from flask import render_template, jsonify
 from googletrans import Translator
+from chat_app.modelss import chatbot_response
 
 
 @app.route('/')
@@ -16,17 +17,11 @@ def chat(message):
     return jsonify({"message": "hello "+translated})
 
 
-#test routes
-#@app.route('/<string:query>',methods=['GET','POST'])
-#def fetch_result(query):
-#    translator = Translator()
-#    translated_query = translator.translate(query,dest='en').text
-#    print(translated)
-#    url = 'https://dummyjson.com/products/search?q={translated_query}'
-#    response = requests.get(url)
-#    data = response.json()
-#    #translated_response = translator.translate(data)
-#    #return jsonify("response":""+translated_response)
-#    return jsonify(data)
-
-
+@app.route('/res/<string:message>')
+def respose(message):
+    translator = Translator()
+    translated = translator.translate(message, dest='en').text
+    data = chatbot_response(translated)
+    print(data)
+    resposeData = translator.translate(data, dest='ml').text
+    return jsonify({"message": data+" "+resposeData})
