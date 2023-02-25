@@ -31,7 +31,9 @@ function prepareMsg() {
   messageContent.value = "";
 }
 document.addEventListener("keyup", (e) => {
-  if (e.key == "d") console.log(messages);
+  if (e.key == "d") {
+  }
+  // console.log(messages);
 });
 
 async function sendMsg(message) {
