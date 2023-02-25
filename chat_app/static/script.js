@@ -23,12 +23,12 @@ document.addEventListener("keyup", (e) => {
 });
 
 async function sendMsg(message) {
-  let response = await fetch(
-    `https://dummyjson.com/products/${message.message}`
-  );
-  //   let response = await fetch(`http://127.0.0.1:5000/${message.message}`);
+  // let response = await fetch(
+  //   `https://dummyjson.com/products/${message.message}`
+  // );
+  let response = await fetch(`http://127.0.0.1:5000/${message.message}`);
   let data = await response.json();
-  renderMsg({ user: "machine", message: data.description });
+  renderMsg({ user: "machine", message: data.message });
 }
 function renderMsg(message) {
   let message_holder = document.createElement("div");
