@@ -55,9 +55,9 @@ function speak(text) {
 
 
 document.body.addEventListener("keyup",function(e){
-
   if(e.key == 'o'){
-
-    speak("നമസ്കാരം");
+    let bubbles = document.querySelectorAll(".bubble");
+    console.log(bubbles[bubbles.length-1].textContent)
+    speak(bubbles[bubbles.length-1].textContent);
   }
 });
