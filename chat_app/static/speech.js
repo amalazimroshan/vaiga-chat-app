@@ -13,14 +13,11 @@ recognition.addEventListener('result', (e)=>{
     .map(result => result.transcript)
     .join('');
    // console.log(text);
-    query = text;
-  
+    query = text; 
 });
 
-
 recognition.addEventListener('end', ()=>{
-  console.log(query);
-  //recognition.start();
+  sendMsg(query);
 });
 
 speechBtn.addEventListener("click",()=> {
@@ -28,6 +25,12 @@ speechBtn.addEventListener("click",()=> {
 });
 
 
+async function sendMsg(message) {
+  
+  let response = await fetch(`http://127.0.0.1:5000/${message}`);
+  let data = response.ok
+    ? await response.json()
+    : { message: "there is some issue on our end" };
 
-
-
+  console.log({ message: data.message });
+}
