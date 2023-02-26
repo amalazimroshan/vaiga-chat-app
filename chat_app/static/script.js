@@ -5,10 +5,11 @@ let sendBtn = document.querySelector("#msgSubmit");
 let submitForm = document.querySelector("form");
 submitForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (e.srcElement[0].value == "clear" || e.srcElement[0].value == "clear.") {
+  let textInput = e.srcElement[0];
+  if (textInput.value == "clear" || textInput.value == "clear.") {
     clearMessages();
-    e.srcElement[0].value = "";
-    e.srcElement[0].focus();
+    textInput.value = "";
+    textInput.focus();
     return;
   }
   prepareMsg();
@@ -52,6 +53,9 @@ function renderMsg(message) {
   let message_holder = document.createElement("div");
   message_holder.classList.add("message_holder");
 
+  let speakerIco = document.createElement("div");
+  speakerIco.classList.add("speaker");
+
   let alinger = document.createElement("div");
   alinger.classList.add("alinger");
   if (message.user == "machine") alinger.classList.add("robot-aligner");
@@ -68,6 +72,8 @@ function renderMsg(message) {
 
   alinger.appendChild(avatar);
   alinger.appendChild(bubble);
+
+  if (message.user == "machine") alinger.appendChild(speakerIco);
 
   message_holder.appendChild(alinger);
   message_container.insertBefore(message_holder, anchor);
