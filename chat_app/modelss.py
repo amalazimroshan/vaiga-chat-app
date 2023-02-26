@@ -25,5 +25,5 @@ def chatbot_response(user_input):
     return response
 
 
-user_input = 'What are the different types of soil found?'
-print(chatbot_response(user_input))
+# user_input = 'What are the different types of soil found?'
+# print(chatbot_response(user_input))
