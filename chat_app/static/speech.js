@@ -36,6 +36,7 @@ function speak(text) {
 
   // Set the speech settings for Malayalam language
   utterance.lang = "ml-IN"; // Malayalam (India) language code
+  utterance.voiceURI = 'Google मलयालम';
   utterance.pitch = 1.0;
   utterance.rate = 1.0;
   utterance.volume = 1.0;
