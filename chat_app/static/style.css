@@ -48,9 +48,8 @@ button {
 }
 .text-area > input {
   width: 100%;
-  font-size: 1.3rem;
-
-  padding: 1em;
+  font-size: 1rem;
+  padding: 2em;
   border: none;
   border-radius: 7px 0 0 7px;
   color: var(--color-text);
@@ -92,6 +91,7 @@ button {
   width: 100%;
   height: 30px;
 }
+
 #anchor {
   height: 10px;
 }
