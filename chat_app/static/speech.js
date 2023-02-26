@@ -34,3 +34,22 @@ speechBtn.addEventListener("click", (e) => {
   
 });
 
+
+function speak(text) {
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  // Set the speech settings for Malayalam language
+  utterance.lang = 'ml-IN'; // Malayalam (India) language code
+  utterance.pitch = 1.0;
+  utterance.rate = 1.0;
+  utterance.volume = 1.0;
+
+  // Set the Malayalam voice
+  const malayalamVoice = synth.getVoices().find(voice => voice.lang === 'ml-IN');
+  if (malayalamVoice) {
+    utterance.voice = malayalamVoice;
+  }
+
+  synth.speak(utterance);
+}
