@@ -29,7 +29,8 @@ def respose(message):
     match = match_location(message)
 
     if(match):
-        return jsonify({"message": " "+match})
+        res = translator.translate(match,dest='ml').text
+        return jsonify({"message": " "+res})
     else:
    # match = match_keywords(translated)
     # matched_location_index = match_locations()
