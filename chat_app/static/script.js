@@ -45,16 +45,12 @@ async function sendMsg(message) {
     ? await response.json()
     : { message: "there is some issue on our end" };
   // let data = await response.json();
-  addSpeaker();
   renderMsg({ user: "machine", message: data.message });
 }
 
 function renderMsg(message) {
   let message_holder = document.createElement("div");
   message_holder.classList.add("message_holder");
-
-  let speakerIco = document.createElement("div");
-  speakerIco.classList.add("speaker");
 
   let alinger = document.createElement("div");
   alinger.classList.add("alinger");
@@ -72,8 +68,6 @@ function renderMsg(message) {
 
   alinger.appendChild(avatar);
   alinger.appendChild(bubble);
-
-  if (message.user == "machine") alinger.appendChild(speakerIco);
 
   message_holder.appendChild(alinger);
   message_container.insertBefore(message_holder, anchor);

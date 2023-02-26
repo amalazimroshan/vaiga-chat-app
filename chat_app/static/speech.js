@@ -35,6 +35,7 @@ function speak(text) {
 
   // Set the speech settings for Malayalam language
   utterance.lang = "ml-IN"; // Malayalam (India) language code
+  utterance.voiceURI = "Google मलयालम";
   utterance.pitch = 1.0;
   utterance.rate = 1.0;
   utterance.volume = 1.0;
@@ -49,11 +50,11 @@ function speak(text) {
 
   synth.speak(utterance);
 }
-
-document.body.addEventListener("keyup", (e) => {
-  if (e.key == "o") {
-    // let bubbles = document.querySelectorAll(".bubble");
-    // console.log(bubbles[bubbles.length - 1].textContent);
-    speak("കേരളത്തിൽ നെല്ല് നടാൻ പറ്റിയ സമയം ഏതാണ്?");
-  }
+let speaker = document.querySelector(".speaker");
+speaker.addEventListener("click", (e) => {
+  console.log("i am speaking");
+  let bubbles = document.querySelectorAll(".bubble");
+  // console.log(bubbles);
+  console.log(bubbles[bubbles.length - 1].textContent);
+  speak(bubbles[bubbles.length - 1].textContent);
 });
