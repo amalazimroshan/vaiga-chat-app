@@ -51,11 +51,11 @@ def respose(message):
 def match_location(location):
 
     splitted = location.lower().split(" ")
-    print(splitted)
+    # print(splitted)
     with open('chat_app/kbcontactinfo.csv') as csvfile:
         csvreader = csv.reader(csvfile)
         for row in csvreader:
-            print(row[0])
+            # print(row[0])
             for word in splitted:
                 if(row[0].lower() == word):
                     return row[1]
