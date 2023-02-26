@@ -26,8 +26,9 @@ recognition.addEventListener("end", () => {
 
 speechBtn.addEventListener("click", (e) => {
   e.preventDefault();
+
   recognition.start();
-  console.log(document.querySelectorAll(".robot-aligner"));
+
 });
 
 function speak(text) {
@@ -50,11 +51,13 @@ function speak(text) {
   synth.speak(utterance);
 }
 
-document.body.addEventListener("keyup", (e) => {
-  if (e.key == "o") {
-    // let bubbles = document.querySelectorAll(".bubble");
-    // console.log(bubbles[bubbles.length - 1].textContent);
-    console.log("o");
-    speak("ഹായ്");
+
+
+
+document.body.addEventListener("keyup",function(e){
+  if(e.key == 'o'){
+    let bubbles = document.querySelectorAll(".bubble");
+    console.log(bubbles[bubbles.length-1].textContent)
+    speak(bubbles[bubbles.length-1].textContent);
   }
 });
