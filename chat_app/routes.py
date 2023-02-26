@@ -3,7 +3,7 @@ from chat_app import app
 from flask import render_template, jsonify
 from googletrans import Translator
 from chat_app.modelss import chatbot_response
-
+import csv
 
 @app.route('/')
 def home_page():
@@ -20,18 +20,23 @@ def chat(message):
 @app.route('/<string:message>')
 def respose(message):
 
+   
     # translating user query to english
     translator = Translator()
     translated = translator.translate(message, dest='en').text
     print(translated)
 
+    match = match_location(message)
 
-    match = match_keywords(translated)
-
-    if match:
-        return jsonify({"message": "you can buy tools from ......"})
-    # else produce result and translate back to english
+    if(match):
+        return jsonify({"message": " "+match})
     else:
+   # match = match_keywords(translated)
+    # matched_location_index = match_locations()
+    # if matched_location_index > 0:
+    #     return jsonify({"message": "you can buy tools from ......"})
+    # # else produce result and translate back to english
+    # else:
         data = chatbot_response(translated)
         # print(data)
         resposeData = translator.translate(data, dest='ml').text
@@ -40,13 +45,23 @@ def respose(message):
 
 
 # if match found return
-def match_keywords(query):
-    match = False
-    spliced = query.lower().split()
-    key_words = ["tool", "tools", "fertilizer", "device"]
-    for word in spliced:
-        for key in key_words:
-            if word == key:
-                match = True
 
-    return match
+
+
+def match_location(location):
+
+    splitted = location.lower().split(" ")
+    # print(splitted)
+    with open('chat_app/kbcontactinfo.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        for row in csvreader:
+            # print(row[0])
+            for word in splitted:
+                if(row[0].lower() == word):
+                    return row[1]
+        return False
+
+
+
+ 
+
