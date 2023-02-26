@@ -26,13 +26,17 @@ def respose(message):
     translated = translator.translate(message, dest='en').text
     print(translated)
 
+    match = match_location(message)
 
-   # match = match_keywords(translated)
-    matched_location_index = match_locations()
-    if matched_location_index > 0:
-        return jsonify({"message": "you can buy tools from ......"})
-    # else produce result and translate back to english
+    if(match):
+        return jsonify({"message": " "+match})
     else:
+   # match = match_keywords(translated)
+    # matched_location_index = match_locations()
+    # if matched_location_index > 0:
+    #     return jsonify({"message": "you can buy tools from ......"})
+    # # else produce result and translate back to english
+    # else:
         data = chatbot_response(translated)
         # print(data)
         resposeData = translator.translate(data, dest='ml').text
@@ -41,24 +45,23 @@ def respose(message):
 
 
 # if match found return
-def match_locations(query):
-    match = False
-    spliced = query.lower().split()
-    count = 0
-    match_count = -1
-    # key_words = ["tool", "tools", "fertilizer", "device"]
+
+
+
+def match_location(location):
+
+    splitted = location.lower().split(" ")
+    print(splitted)
     with open('chat_app/kbcontactinfo.csv') as csvfile:
         csvreader = csv.reader(csvfile)
         for row in csvreader:
-            for key in spliced:
-                if row['location'] == key:
-                    match = True
-                    match_count = count
-            count = count + 1
-        if(match):
-            return match_count
-        else:
-            return -1
+            print(row[0])
+            for word in splitted:
+                if(row[0].lower() == word):
+                    return row[1]
+        return False
+
+
 
  
 
