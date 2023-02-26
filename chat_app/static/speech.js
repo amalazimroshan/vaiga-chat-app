@@ -28,7 +28,6 @@ speechBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
   recognition.start();
-
 });
 
 function speak(text) {
@@ -51,13 +50,20 @@ function speak(text) {
   synth.speak(utterance);
 }
 
+function addSpeaker() {
+  let aligners = document.querySelectorAll(".alinger");
+  console.log(aligners);
+  aligners.forEach((elem) => {
+    elem.addEventListener("click", (e) => {
+      console.log(e.target);
+    });
+  });
+}
 
-
-
-document.body.addEventListener("keyup",function(e){
-  if(e.key == 'o'){
+document.body.addEventListener("keyup", function (e) {
+  if (e.key == "o") {
     let bubbles = document.querySelectorAll(".bubble");
-    console.log(bubbles[bubbles.length-1].textContent)
-    speak(bubbles[bubbles.length-1].textContent);
+    console.log(bubbles[bubbles.length - 1].textContent);
+    speak(bubbles[bubbles.length - 1].textContent);
   }
 });
