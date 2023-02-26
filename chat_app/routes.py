@@ -33,8 +33,9 @@ def respose(message):
     # else produce result and translate back to english
     else:
         data = chatbot_response(translated)
-        print(data)
+        # print(data)
         resposeData = translator.translate(data, dest='ml').text
+        print(resposeData)
         return jsonify({"message": " "+resposeData})
 
 
