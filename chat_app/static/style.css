@@ -151,17 +151,31 @@ button {
 .iconUser {
   background-image: url(./person.svg);
 }
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  /* backdrop-filter: blur(10px); */
+  background-color: #2f3139;
+}
 .speaker {
-  background-image: url(./megaphone.svg);
   width: 2rem;
   height: 2rem;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   align-self: flex-end;
+  padding: 0.3em;
+  margin: 1.5em;
+  border: none;
+  background-color: transparent;
 }
 .speaker:hover {
   cursor: pointer;
+}
+.speaker > svg {
+  fill: var(--color-text);
 }
 /* .speaker {
   height: 2rem;

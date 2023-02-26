@@ -11,7 +11,7 @@ import joblib
 
 def chatbot_response(user_input):
     # data = pd.read_csv('chat_app/dataset.csv')
-    data = pd.read_csv('chat_app/jnewfile2.csv')
+    data = pd.read_csv('chat_app\jnewfile2.csv')
 
     vectorizer = TfidfVectorizer()
     X = vectorizer.fit_transform(data['question'].values.astype('U'))
@@ -25,5 +25,5 @@ def chatbot_response(user_input):
     return response
 
 
-user_input = 'What are the different types of soil found?'
-print(chatbot_response(user_input))
+# user_input = 'What are the different types of soil found?'
+# print(chatbot_response(user_input))

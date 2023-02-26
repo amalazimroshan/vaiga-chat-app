@@ -15,7 +15,6 @@ submitForm.addEventListener("submit", (e) => {
   prepareMsg();
 });
 
-
 function clearMessages() {
   let messages = message_container.querySelectorAll(".message_holder");
   console.log(messages);
@@ -41,22 +40,17 @@ document.addEventListener("keyup", (e) => {
 });
 
 async function sendMsg(message) {
- 
   let response = await fetch(`http://127.0.0.1:5000/${message.message}`);
   let data = response.ok
     ? await response.json()
     : { message: "there is some issue on our end" };
   // let data = await response.json();
-
   renderMsg({ user: "machine", message: data.message });
 }
 
 function renderMsg(message) {
   let message_holder = document.createElement("div");
   message_holder.classList.add("message_holder");
-
-  let speakerIco = document.createElement("div");
-  speakerIco.classList.add("speaker");
 
   let alinger = document.createElement("div");
   alinger.classList.add("alinger");
@@ -74,8 +68,6 @@ function renderMsg(message) {
 
   alinger.appendChild(avatar);
   alinger.appendChild(bubble);
-
-  if (message.user == "machine") alinger.appendChild(speakerIco);
 
   message_holder.appendChild(alinger);
   message_container.insertBefore(message_holder, anchor);
