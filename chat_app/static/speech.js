@@ -1,5 +1,11 @@
 const speechBtn = document.getElementById("start-speech");
+const speakBtn = document.getElementById("speak-btn");
+// const lastBubble = document.querySelectorAll(".robot-aligner");
 
+
+
+
+const synth = window.speechSynthesis;
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 const recognition = new SpeechRecognition();
@@ -24,7 +30,7 @@ recognition.addEventListener("end", () => {
 speechBtn.addEventListener("click", (e) => {
   e.preventDefault();
   recognition.start();
+  console.log(document.querySelectorAll(".robot-aligner"));
+  
 });
-
-
 
