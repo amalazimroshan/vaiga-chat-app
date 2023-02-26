@@ -3,7 +3,7 @@ from chat_app import app
 from flask import render_template, jsonify
 from googletrans import Translator
 from chat_app.modelss import chatbot_response
-
+import csv
 
 @app.route('/')
 def home_page():
@@ -20,15 +20,16 @@ def chat(message):
 @app.route('/<string:message>')
 def respose(message):
 
+   
     # translating user query to english
     translator = Translator()
     translated = translator.translate(message, dest='en').text
     print(translated)
 
 
-    match = match_keywords(translated)
-
-    if match:
+   # match = match_keywords(translated)
+    matched_location_index = match_locations()
+    if matched_location_index > 0:
         return jsonify({"message": "you can buy tools from ......"})
     # else produce result and translate back to english
     else:
@@ -40,13 +41,24 @@ def respose(message):
 
 
 # if match found return
-def match_keywords(query):
+def match_locations(query):
     match = False
     spliced = query.lower().split()
-    key_words = ["tool", "tools", "fertilizer", "device"]
-    for word in spliced:
-        for key in key_words:
-            if word == key:
-                match = True
+    count = 0
+    match_count = -1
+    # key_words = ["tool", "tools", "fertilizer", "device"]
+    with open('chat_app/kbcontactinfo.csv') as csvfile:
+        csvreader = csv.reader(csvfile)
+        for row in csvreader:
+            for key in spliced:
+                if row['location'] == key:
+                    match = True
+                    match_count = count
+            count = count + 1
+        if(match):
+            return match_count
+        else:
+            return -1
 
-    return match
+ 
+
