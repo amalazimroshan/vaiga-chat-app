@@ -14,6 +14,8 @@ submitForm.addEventListener("submit", (e) => {
   }
   prepareMsg();
 });
+
+
 function clearMessages() {
   let messages = message_container.querySelectorAll(".message_holder");
   console.log(messages);
@@ -21,6 +23,7 @@ function clearMessages() {
     message_container.removeChild(elem);
   });
 }
+
 function prepareMsg() {
   let messageContent = document.querySelector("#msgText");
   messages.set(Math.floor(Math.random() * 100), {
@@ -38,9 +41,7 @@ document.addEventListener("keyup", (e) => {
 });
 
 async function sendMsg(message) {
-  // let response = await fetch(
-  //   `https://dummyjson.com/products/${message.message}`
-  // );
+ 
   let response = await fetch(`http://127.0.0.1:5000/${message.message}`);
   let data = response.ok
     ? await response.json()
@@ -49,6 +50,7 @@ async function sendMsg(message) {
 
   renderMsg({ user: "machine", message: data.message });
 }
+
 function renderMsg(message) {
   let message_holder = document.createElement("div");
   message_holder.classList.add("message_holder");

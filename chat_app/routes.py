@@ -25,14 +25,6 @@ def respose(message):
     translated = translator.translate(message, dest='en').text
     print(translated)
 
-    # checking user query for specific words
-    # match = False
-    # spliced = translated.lower().split()
-    # key_words = ["tool","fertilizer","device"]
-    # for word in spliced:
-    #     for key in key_words:
-    #         if word == key :
-    #             match = True
 
     match = match_keywords(translated)
 
