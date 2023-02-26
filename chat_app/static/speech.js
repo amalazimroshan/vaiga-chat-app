@@ -29,8 +29,7 @@ recognition.addEventListener("end", () => {
 
 speechBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  recognition.start();
-  console.log(document.querySelectorAll(".robot-aligner"));
+  //recognition.start();
   
 });
 
@@ -53,3 +52,13 @@ function speak(text) {
 
   synth.speak(utterance);
 }
+
+
+
+document.body.addEventListener("keyup",function(e){
+
+  if(e.key == 'o'){
+
+    speak("നമസ്കാരം");
+  }
+});
