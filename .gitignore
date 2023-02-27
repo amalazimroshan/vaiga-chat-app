@@ -1,2 +1,4 @@
-workstation
-__pycache__/
+/chat_app/__pycache__/
+/chat_app/assets
+chat_app/
+/models.py
