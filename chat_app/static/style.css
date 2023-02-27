@@ -8,9 +8,14 @@
   --color-textbox: #4a7266;
   --color-text: #f4f4f4;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@100&display=swap");
+
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Noto Sans Malayalam", sans-serif;
+  font-weight: 400;
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; */
 }
 .darkbg {
   background-color: #265a4f;
@@ -113,6 +118,7 @@ button {
   max-width: 500px;
   color: var(--color-text);
   border-radius: 0px 15px 15px 15px;
+  line-height: 1.4rem;
 }
 .user {
   background-color: var(--color-bubble-secondary);
